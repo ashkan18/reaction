@@ -10,6 +10,10 @@ export type Review_order$ref = typeof _Review_order$ref;
 export type Review_order = {
     readonly id: string | null;
     readonly mode: OrderModeEnum | null;
+    readonly lastOffer: ({
+        readonly id: string | null;
+        readonly amountCents: number | null;
+    }) | null;
     readonly lineItems: ({
         readonly edges: ReadonlyArray<({
             readonly node: ({
@@ -39,15 +43,15 @@ var v0 = {
 },
 v1 = {
   "kind": "ScalarField",
-  "alias": null,
-  "name": "__id",
+  "alias": "__id",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
-  "alias": "__id",
-  "name": "id",
+  "alias": null,
+  "name": "__id",
   "args": null,
   "storageKey": null
 };
@@ -65,6 +69,26 @@ return {
       "name": "mode",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "lastOffer",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Offer",
+      "plural": false,
+      "selections": [
+        v0,
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "amountCents",
+          "args": null,
+          "storageKey": null
+        },
+        v1
+      ]
     },
     {
       "kind": "LinkedField",
@@ -113,7 +137,7 @@ return {
                       "plural": true,
                       "selections": [
                         v0,
-                        v1
+                        v2
                       ]
                     },
                     {
@@ -121,10 +145,10 @@ return {
                       "name": "ItemReview_artwork",
                       "args": null
                     },
-                    v1
+                    v2
                   ]
                 },
-                v2
+                v1
               ]
             }
           ]
@@ -141,9 +165,9 @@ return {
       "name": "ShippingAndPaymentReview_order",
       "args": null
     },
-    v2
+    v1
   ]
 };
 })();
-(node as any).hash = '8ed0c48e8b5169b670c63a98e1f83479';
+(node as any).hash = '51062f04ff389c09ab5ccf29f2016e81';
 export default node;
