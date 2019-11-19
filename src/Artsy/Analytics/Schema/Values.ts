@@ -352,11 +352,6 @@ export enum ContextModule {
    * Artist Series rail in the collection hub
    */
   ArtistCollectionsRail = "ArtistCollectionsRail",
-
-  /**
-   * NSO 'bank transfer experiment
-   */
-  BankTransferExperiment = "BankTransferExperiment",
 }
 
 export enum Flow {
