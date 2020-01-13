@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   Join,
@@ -9,7 +10,7 @@ import {
   Spacer,
 } from "@artsy/palette"
 import { Status_order } from "__generated__/Status_order.graphql"
-import { OtherWorksFragmentContainer as OtherWorks } from "Apps/Artwork/Components/OtherWorks/index"
+import { RelatedWorksArtworkGridRefetchContainer as RelatedWorksArtworkGrid } from "Apps/Artwork/Components/OtherWorks/RelatedWorksArtworkGrid"
 import { HorizontalPadding } from "Apps/Components/HorizontalPadding"
 import { TransactionDetailsSummaryItemFragmentContainer as TransactionDetailsSummaryItem } from "Apps/Order/Components/TransactionDetailsSummaryItem"
 import { TwoColumnLayout } from "Apps/Order/Components/TwoColumnLayout"
@@ -231,8 +232,8 @@ export class StatusRoute extends Component<StatusProps> {
 
   render() {
     const { order } = this.props
-    console.log("----->", order.lineItems.edges[0].node.artwork)
-    const artwork = order.lineItems.edges[0].node.artwork
+    const artwork = get({}, props => order.lineItems.edges[0].node.artwork)
+    console.log("----->", artwork)
     const flowName = order.mode === "OFFER" ? "Offer" : "Order"
     const {
       title,
@@ -291,7 +292,9 @@ export class StatusRoute extends Component<StatusProps> {
             }
           />
         </HorizontalPadding>
-        <OtherWorks artwork={artwork} />
+        <Box mt={3}>
+          <RelatedWorksArtworkGrid artwork={artwork} />
+        </Box>
       </>
     )
   }
@@ -345,7 +348,7 @@ export const StatusFragmentContainer = createFragmentContainer(
           edges {
             node {
               artwork {
-                ...OtherWorks_artwork
+                ...RelatedWorksArtworkGrid_artwork
               }
               fulfillments {
                 edges {
