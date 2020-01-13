@@ -24,6 +24,9 @@ export type Status_order = {
     readonly lineItems: {
         readonly edges: ReadonlyArray<{
             readonly node: {
+                readonly artwork: {
+                    readonly " $fragmentRefs": FragmentRefs<"OtherWorks_artwork">;
+                } | null;
                 readonly fulfillments: {
                     readonly edges: ReadonlyArray<{
                         readonly node: {
@@ -182,6 +185,22 @@ return {
                 {
                   "kind": "LinkedField",
                   "alias": null,
+                  "name": "artwork",
+                  "storageKey": null,
+                  "args": null,
+                  "concreteType": "Artwork",
+                  "plural": false,
+                  "selections": [
+                    {
+                      "kind": "FragmentSpread",
+                      "name": "OtherWorks_artwork",
+                      "args": null
+                    }
+                  ]
+                },
+                {
+                  "kind": "LinkedField",
+                  "alias": null,
                   "name": "fulfillments",
                   "storageKey": null,
                   "args": null,
@@ -328,5 +347,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '6d7b7eae932926afe8a4dd215e13d78f';
+(node as any).hash = '7c7d9a260542a51654f269f5e4a80590';
 export default node;

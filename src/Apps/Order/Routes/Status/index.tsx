@@ -9,6 +9,7 @@ import {
   Spacer,
 } from "@artsy/palette"
 import { Status_order } from "__generated__/Status_order.graphql"
+import { OtherWorksFragmentContainer as OtherWorks } from "Apps/Artwork/Components/OtherWorks/index"
 import { HorizontalPadding } from "Apps/Components/HorizontalPadding"
 import { TransactionDetailsSummaryItemFragmentContainer as TransactionDetailsSummaryItem } from "Apps/Order/Components/TransactionDetailsSummaryItem"
 import { TwoColumnLayout } from "Apps/Order/Components/TwoColumnLayout"
@@ -230,7 +231,8 @@ export class StatusRoute extends Component<StatusProps> {
 
   render() {
     const { order } = this.props
-
+    console.log("----->", order.lineItems.edges[0].node.artwork)
+    const artwork = order.lineItems.edges[0].node.artwork
     const flowName = order.mode === "OFFER" ? "Offer" : "Order"
     const {
       title,
@@ -289,6 +291,7 @@ export class StatusRoute extends Component<StatusProps> {
             }
           />
         </HorizontalPadding>
+        <OtherWorks artwork={artwork} />
       </>
     )
   }
@@ -341,6 +344,9 @@ export const StatusFragmentContainer = createFragmentContainer(
         lineItems {
           edges {
             node {
+              artwork {
+                ...OtherWorks_artwork
+              }
               fulfillments {
                 edges {
                   node {
